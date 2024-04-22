@@ -13,6 +13,17 @@ In the `parasol-insurance/lab-materials/03/06` folder there are two pipeline fil
 The `.pipeline` file can be opened in Elyra to be visually modified and executed, while the `.yaml` file can be imported into the pipeline server through the RHOAI Dashboard. +
 Here we will be running the pipeline through Elyra.
 
+== What is Elyra?
+
+Elyra is a visual interface to build out pipelines. Think of it as your standard code editor, but drag-and-drop. This also means that we won't execute anything in/with Elyra, but just produce some code (or more specifically, a json in the case of Elyra) that later will be sent elsewhere for execution.
+
+In Elyra, you can drag-and-drop in Python, notebook, or R files into the dashboard and then connect them up into a workflow. +
+You also have a button on the top-right side that allows you to expand additional settings for the pipeline and each step. +
+[.bordershadow]
+image::03/06-elyra-menu.png[]
+
+Using Elyra, you can get started quicly with prototyping and running pipelines.
+
 == Ad-Hoc execution
 
 Running it through Elyra is the same as doing an ad-hoc execution of the pipeline, as opposed to importing the pipeline which won't automatically execute it.
