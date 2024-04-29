@@ -30,7 +30,11 @@ Running it through Elyra is the same as doing an ad-hoc execution of the pipelin
 +
 [.bordershadow]
 image::03/07-elyra-pipeline.png[elyra confidence pipeline]
-. in the popup, leave the name unchanged and click **OK**:
+. You may get a warning that the pipeline is unsaved, this is normal, just press **Save and Submit** if this happens.
++
+[.bordershadow]
+image::03/03-06-unsaved-changes.png[]
+. In the next popup, leave the name unchanged and click **OK**:
 +
 [.bordershadow]
 image::03/03-07-run-pipeline-ok.png[]
