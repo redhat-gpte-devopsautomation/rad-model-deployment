@@ -57,7 +57,7 @@ spec:
     spec:
       containers:
       - name: oauth-proxy
-        image: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:ab112105ac37352a2a4916a39d6736f5db6ab4c29bad4467de8d613e80e9bb33
+        image: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:4bef31eb993feb6f1096b51b4876c65a6fb1f4401fee97fa4f4542b6b7c9bc46
         command: ["tail"]
         args: ["-f", "/dev/null"]
         resources:
@@ -136,6 +136,16 @@ spec:
               memory: 10Mi
         - name: ds-pipeline-pipelines-definition
           image: registry.redhat.io/rhoai/odh-ml-pipelines-api-server-rhel8@sha256:07954372e0e4dff0109d8d2551d059832ad87fb1fe8fbb8a54fa1c0f7878dbc1
+          command: ["tail"]
+          args: ["-f", "/dev/null"]
+          resources:
+            limits:
+              memory: 20Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+        - name: oauth-proxy
+          image: registry.redhat.io/openshift4/ose-oauth-proxy@sha256:ab112105ac37352a2a4916a39d6736f5db6ab4c29bad4467de8d613e80e9bb33
           command: ["tail"]
           args: ["-f", "/dev/null"]
           resources:
