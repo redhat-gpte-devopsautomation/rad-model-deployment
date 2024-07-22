@@ -5,3 +5,4 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: 'false'
     argocd.argoproj.io/sync-wave: "0"
+provisioner: ebs.csi.aws.com
