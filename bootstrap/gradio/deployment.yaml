@@ -70,7 +70,7 @@ spec:
               value: '0.95'
             - name: TEMPERATURE
               value: '0.01'
-            - name: PRESENCE_PENALTY
+            - name: REPETITION_PENALTY
               value: '1.03'
           securityContext:
             capabilities:
