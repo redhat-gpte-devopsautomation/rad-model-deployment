@@ -8,45 +8,45 @@ spec:
   - list:
       elements:
       - cluster: in-cluster
-        name: shared-minio-app
+        name: ic-shared-minio-app
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/shared-minio
+        targetRevision: dev
+        path: bootstrap/ic-shared-minio
       - cluster: in-cluster
-        name: shared-database-app
+        name: ic-shared-database-app
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/shared-database
+        targetRevision: dev
+        path: bootstrap/ic-shared-database
       - cluster: in-cluster
-        name: shared-llm-app
+        name: ic-shared-llm-app
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/shared-llm
+        targetRevision: dev
+        path: bootstrap/ic-shared-llm
       - cluster: in-cluster
-        name: gradio-app
+        name: ic-shared-img-det
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/gradio
+        targetRevision: dev
+        path: bootstrap/ic-shared-img-det
       - cluster: in-cluster
-        name: pgvector-deployment-app
+        name: ic-rhoai-configuration
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/pgvector-deployment
+        targetRevision: dev
+        path: bootstrap/ic-rhoai-configuration
       - cluster: in-cluster
-        name: pipeline
+        name: ic-user-projects
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/ds-pipeline
+        targetRevision: dev
+        path: bootstrap/ic-user-projects
       - cluster: in-cluster
-        name: shared-img-det
+        name: ic-shared-milvus
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/shared-img-det
+        targetRevision: dev
+        path: bootstrap/ic-shared-milvus
       - cluster: in-cluster
-        name: rhoai-configuration
+        name: ic-shared-app
         repoURL: https://github.com/redhat-gpte-devopsautomation/rad-model-deployment.git
-        targetRevision: main
-        path: bootstrap/rhoai-configuration
+        targetRevision: dev
+        path: bootstrap/ic-shared-app
   template:
     metadata:
       name: '{{name}}'
