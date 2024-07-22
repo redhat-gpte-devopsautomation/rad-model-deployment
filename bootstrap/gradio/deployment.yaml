@@ -54,6 +54,8 @@ spec:
               value: 'Talk with your documentation'
             - name: INFERENCE_SERVER_URL
               value: 'http://llm.ic-shared-llm.svc.cluster.local:8000/'
+            - name: MODEL_NAME
+              value: 'mistralai/Mistral-7B-Instruct-v0.2'  
             - name: DB_CONNECTION_STRING
               value: 'postgresql+psycopg://vectordb:vectordb@postgresql-service.ic-shared-llm.svc.cluster.local:5432/vectordb' # notsecret
             - name: DB_COLLECTION_NAME
@@ -68,7 +70,7 @@ spec:
               value: '0.95'
             - name: TEMPERATURE
               value: '0.01'
-            - name: REPETITION_PENALTY
+            - name: PRESENCE_PENALTY
               value: '1.03'
           securityContext:
             capabilities:
