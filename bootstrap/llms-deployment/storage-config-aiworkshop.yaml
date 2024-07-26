@@ -1,0 +1,11 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: storage-config
+  namespace: aiworkshop
+  labels:
+    opendatahub.io/managed: 'true'
+data:
+  aws-connection-aiworkshop: eyJhY2Nlc3Nfa2V5X2lkIjoibWluaW8iLCJidWNrZXQiOiJtb2RlbHMiLCJkZWZhdWx0X2J1Y2tldCI6Im1vZGVscyIsImVuZHBvaW50X3VybCI6Imh0dHBzOi8vbWluaW8tczMtaWMtc2hhcmVkLW1pbmlvLmFwcHMuY2x1c3Rlci13azV0eC5zYW5kYm94MzA1MS5vcGVudGxjLmNvbS8iLCJyZWdpb24iOiIiLCJzZWNyZXRfYWNjZXNzX2tleSI6Im1pbmlvMTIzIiwidHlwZSI6InMzIn0=
+# {"access_key_id":"minio","bucket":"models","default_bucket":"models","endpoint_url":"https://minio-s3-ic-shared-minio.apps.cluster-wk5tx.sandbox3051.opentlc.com/","region":"","secret_access_key":"minio123","type":"s3"}
+type: Opaque

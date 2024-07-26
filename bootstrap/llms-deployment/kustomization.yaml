@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  component: ic-shared-llm
+
+resources:
+# wave 0
+- namespace.yaml
+- secret-aws-connection-aiworkshop.yaml
+- storage-config-aiworkshop.yaml
+# wave 1
+- servingruntime-granite-7b-lab.yaml
+- servingruntime-merlinite-7b-lab.yaml
+- servingruntime-parasol-chat.yaml
+- servingruntime-parasol-instruct.yaml
+- job-upload-model-to-s3.yaml
+# wave 2
+- inferenceservice-granite-7b-lab.yaml
+- inferenceservice-merlinite-7b-lab.yaml
+- inferenceservice-parasol-chat.yaml
+- inferenceservice-parasol-instruct.yaml
