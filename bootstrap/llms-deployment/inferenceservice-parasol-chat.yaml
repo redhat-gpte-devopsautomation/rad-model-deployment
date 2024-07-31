@@ -30,7 +30,7 @@ spec:
       runtime: parasol-chat
       storage:
         key: aws-connection-aiworkshop
-        path: parasol
+        path: parasol-chat
     tolerations:
       - effect: NoSchedule
         key: nvidia.com/gpu
