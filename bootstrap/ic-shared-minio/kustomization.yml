@@ -17,6 +17,6 @@ resources:
 - deployment.yml
 - service.yml
 - route.yml
- wave 2
+# wave 2
 - create-data-connection.yml
 - create-buckets.yaml
