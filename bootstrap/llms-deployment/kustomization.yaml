@@ -15,9 +15,11 @@ resources:
 - servingruntime-merlinite-7b-lab.yaml
 - servingruntime-parasol-chat.yaml
 - servingruntime-parasol-instruct.yaml
+- servingruntime-parasol-embeddings.yaml
 #- job-upload-model-to-s3.yaml
 # wave 2
 - inferenceservice-granite-7b-lab.yaml
 - inferenceservice-merlinite-7b-lab.yaml
 - inferenceservice-parasol-chat.yaml
 - inferenceservice-parasol-instruct.yaml
+- inferenceservice-parasol-embeddings.yaml
