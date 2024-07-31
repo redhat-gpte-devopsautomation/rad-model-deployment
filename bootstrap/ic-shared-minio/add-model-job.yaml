@@ -1,0 +1,137 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: '1'
+  resourceVersion: '4015093'
+  name: copy-models-to-minio
+  uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+  creationTimestamp: '2024-07-27T13:44:29Z'
+  generation: 1
+  managedFields:
+    - manager: Mozilla
+      operation: Update
+      apiVersion: batch/v1
+      time: '2024-07-27T13:44:29Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:argocd.argoproj.io/sync-wave': {}
+        'f:spec':
+          'f:backoffLimit': {}
+          'f:completionMode': {}
+          'f:completions': {}
+          'f:manualSelector': {}
+          'f:parallelism': {}
+          'f:podReplacementPolicy': {}
+          'f:suspend': {}
+          'f:template':
+            'f:spec':
+              'f:containers':
+                'k:{"name":"copy-models"}':
+                  'f:image': {}
+                  'f:terminationMessagePolicy': {}
+                  .: {}
+                  'f:resources': {}
+                  'f:args': {}
+                  'f:command': {}
+                  'f:terminationMessagePath': {}
+                  'f:imagePullPolicy': {}
+                  'f:name': {}
+              'f:dnsPolicy': {}
+              'f:restartPolicy': {}
+              'f:schedulerName': {}
+              'f:securityContext': {}
+              'f:serviceAccount': {}
+              'f:serviceAccountName': {}
+              'f:terminationGracePeriodSeconds': {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: batch/v1
+      time: '2024-07-27T13:44:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:active': {}
+          'f:ready': {}
+          'f:startTime': {}
+          'f:terminating': {}
+          'f:uncountedTerminatedPods': {}
+      subresource: status
+  namespace: ic-shared-minio
+  labels:
+    batch.kubernetes.io/controller-uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+    batch.kubernetes.io/job-name: copy-models-to-minio
+    controller-uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+    job-name: copy-models-to-minio
+spec:
+  manualSelector: false
+  backoffLimit: 4
+  completions: 1
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        batch.kubernetes.io/controller-uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+        batch.kubernetes.io/job-name: copy-models-to-minio
+        controller-uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+        job-name: copy-models-to-minio
+    spec:
+      containers:
+        - name: copy-models
+          image: 'image-registry.openshift-image-registry.svc:5000/redhat-ods-applications/s2i-generic-data-science-notebook:1.2'
+          command:
+            - /bin/bash
+          args:
+            - '-ec'
+            - |-
+              # Install AWS CLI
+              pip install awscli
+
+              # Install MinIO Client (mc)
+              curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
+              chmod +x mc
+
+              # Set up AWS credentials
+              export AWS_ACCESS_KEY_ID=$(oc get secret aws-secret -o jsonpath='{.data.AWS_ACCESS_KEY_ID}' | base64 --decode)
+              export AWS_SECRET_ACCESS_KEY=$(oc get secret aws-secret -o jsonpath='{.data.AWS_SECRET_ACCESS_KEY}' | base64 --decode)
+
+              rm -rf ./local-models/*
+              # Set MinIO alias
+              ./mc alias set shared-minio https://minio-s3-ic-shared-minio.apps.cluster-6x6sx.sandbox480.opentlc.com minio minio123
+
+              # Copy from S3 to local
+              aws s3 cp s3://serve-model/parasol ./local-models/parasol --recursive --no-follow-symlinks
+
+              # Copy from local to MinIO
+              ./mc cp ./local-models/ shared-minio/models/ --recursive
+
+              # Clean up AWS secret
+              oc delete secret aws-secret
+              rm -rf ./local-models/*
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      serviceAccountName: minio-manage
+      serviceAccount: minio-manage
+      securityContext: {}
+      schedulerName: default-scheduler
+  suspend: false
+  parallelism: 1
+  podReplacementPolicy: TerminatingOrFailed
+  completionMode: NonIndexed
+  selector:
+    matchLabels:
+      batch.kubernetes.io/controller-uid: e9c01197-2a83-4c70-aa8e-68a21f1d20b7
+status:
+  startTime: '2024-07-27T13:44:29Z'
+  active: 1
+  terminating: 0
+  uncountedTerminatedPods: {}
+  ready: 1
